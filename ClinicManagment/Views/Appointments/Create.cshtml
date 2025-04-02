@@ -1,0 +1,67 @@
+@model ClinicManagment.Models.Appointment
+
+@{
+    ViewData["Title"] = "إضافة موعد جديد";
+    Layout = "_Layout";
+}
+
+<div class="container">
+    <h1>إضافة موعد جديد</h1>
+
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        
+        <div class="form-group">
+            <label asp-for="PatientId" class="control-label">المريض</label>
+            <select asp-for="PatientId" class="form-control" asp-items="ViewBag.Patients"></select>
+        </div>
+        
+        <div class="form-group">
+            <label asp-for="DoctorId" class="control-label">الطبيب</label>
+            <select asp-for="DoctorId" class="form-control" asp-items="ViewBag.Doctors"></select>
+        </div>
+        
+        <div class="form-group">
+            <label asp-for="AppointmentDate" class="control-label">التاريخ</label>
+            <input asp-for="AppointmentDate" type="date" class="form-control" />
+            <span asp-validation-for="AppointmentDate" class="text-danger"></span>
+        </div>
+        
+        <div class="form-group">
+            <label asp-for="StartTime" class="control-label">وقت البدء</label>
+            <input asp-for="StartTime" type="time" class="form-control" />
+            <span asp-validation-for="StartTime" class="text-danger"></span>
+        </div>
+        
+        <div class="form-group">
+            <label asp-for="EndTime" class="control-label">وقت الانتهاء</label>
+            <input asp-for="EndTime" type="time" class="form-control" />
+            <span asp-validation-for="EndTime" class="text-danger"></span>
+        </div>
+        
+        <div class="form-group">
+            <label asp-for="Status" class="control-label">الحالة</label>
+            <select asp-for="Status" class="form-control">
+                <option value="Scheduled">مجدول</option>
+                <option value="Completed">مكتمل</option>
+                <option value="Cancelled">ملغى</option>
+            </select>
+            <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+        
+        <div class="form-group">
+            <label asp-for="Notes" class="control-label">ملاحظات</label>
+            <textarea asp-for="Notes" class="form-control"></textarea>
+            <span asp-validation-for="Notes" class="text-danger"></span>
+        </div>
+        
+        <div class="form-group">
+            <input type="submit" value="حفظ" class="btn btn-primary" />
+            <a asp-action="Index" class="btn btn-secondary">العودة للقائمة</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

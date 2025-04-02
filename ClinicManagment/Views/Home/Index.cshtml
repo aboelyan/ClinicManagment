@@ -1,0 +1,109 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<style>
+    .hero-section {
+        background: linear-gradient(to right, #007bff, #6610f2);
+        color: white;
+        padding: 100px 0;
+    }
+    .hero-section .btn {
+        transition: transform 0.2s ease-in-out;
+    }
+    .hero-section .btn:hover {
+        transform: scale(1.1);
+    }
+    .stat-card {
+        background: #f8f9fa;
+        padding: 30px;
+        border-radius: 10px;
+        transition: 0.3s;
+    }
+    .stat-card:hover {
+        background: #007bff;
+        color: white;
+    }
+    .icon-wrapper {
+        font-size: 40px;
+        color: #007bff;
+    }
+    .feature-card {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+    }
+    .feature-card:hover {
+        transform: translateY(-10px);
+    }
+</style>
+
+<div class="hero-section text-center">
+    <h1 class="display-3 mb-4">Welcome to Smart Clinic</h1>
+    <p class="lead mb-5">Manage your clinic efficiently with our smart management system</p>
+    <div class="d-flex justify-content-center gap-3">
+        <a href="/Account/Register" class="btn btn-light btn-lg">Get Started</a>
+        <a href="#features" class="btn btn-outline-light btn-lg">Learn More</a>
+    </div>
+</div>
+
+<div class="container text-center my-5">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="stat-card">
+                <i class="fas fa-users fa-3x mb-3"></i>
+                <h3>+1000</h3>
+                <p>Active Patients</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="stat-card">
+                <i class="fas fa-calendar-check fa-3x mb-3"></i>
+                <h3>+500</h3>
+                <p>Daily Appointments</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="stat-card">
+                <i class="fas fa-clinic-medical fa-3x mb-3"></i>
+                <h3>+50</h3>
+                <p>Partner Clinics</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="features" class="container my-5">
+    <h2 class="text-center mb-5">System Features</h2>
+    <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+            <div class="feature-card text-center p-4">
+                <div class="icon-wrapper mb-3">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h4>Telegram Bot</h4>
+                <p>Automated appointment booking and patient communication</p>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="feature-card text-center p-4">
+                <div class="icon-wrapper mb-3">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <h4>Smart Scheduling</h4>
+                <p>Efficient and flexible appointment management system</p>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="feature-card text-center p-4">
+                <div class="icon-wrapper mb-3">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h4>Analytics</h4>
+                <p>Detailed reports and statistics about your clinic</p>
+            </div>
+        </div>
+    </div>
+</div>

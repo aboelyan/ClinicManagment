@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>المواعيد</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <div class="container">
+        <h1>المواعيد</h1>
+
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success">@TempData["Success"]</div>
+        }
+
+        <p>
+            <a href="/Appointments/Create" class="btn btn-primary">إضافة موعد جديد</a>
+        </p>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>المريض</th>
+                    <th>الطبيب</th>
+                    <th>التاريخ</th>
+                    <th>وقت البدء</th>
+                    <th>وقت الانتهاء</th>
+                    <th>الحالة</th>
+                    <th>إجراءات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Patient?.Name</td>
+                        <td>@item.Doctor?.Name</td>
+                        <td>@item.AppointmentDate.ToShortDateString()</td>
+                        <td>@item.StartTime.ToString(@"hh\:mm")</td>
+                        <td>@item.EndTime.ToString(@"hh\:mm")</td>
+                        <td>@item.Status</td>
+                        <td>
+                            <a href="/Appointments/Edit/@item.Id" class="btn btn-sm btn-warning">تعديل</a>
+                            <a href="/Appointments/Details/@item.Id" class="btn btn-sm btn-info">تفاصيل</a>
+                            <a href="/Appointments/Delete/@item.Id" class="btn btn-sm btn-danger" onclick="return confirm('هل أنت متأكد من حذف هذا الموعد؟')">حذف</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

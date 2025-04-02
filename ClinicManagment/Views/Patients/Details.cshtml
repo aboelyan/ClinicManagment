@@ -1,0 +1,96 @@
+@model ClinicManagment.Models.Patient
+
+@{
+    ViewData["Title"] = "تفاصيل المريض";
+}
+
+<h1>تفاصيل المريض</h1>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.Name)</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.BirthDate) @* Corrected property name *@
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.BirthDate) @* Corrected property name *@
+        </dd>
+        @* Removed Address and Gender fields as they don't exist in the model *@
+    </dl>
+</div>
+
+@if (Model.Appointments != null && Model.Appointments.Any())
+{
+    <h4>المواعيد</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>التاريخ</th>
+                <th>الطبيب</th>
+                <th>الحالة</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Appointments)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.AppointmentDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Doctor.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>لا توجد مواعيد مسجلة لهذا المريض.</p>
+}
+
+
+@if (Model.LabTests != null && Model.LabTests.Any())
+{
+    <h4>الفحوصات المخبرية</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>اسم الفحص</th>
+                <th>التاريخ</th>
+                <th>النتيجة</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.LabTests)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.TestName)</td>
+                 @*    <td>@Html.DisplayFor(modelItem => item.TestDate)</td> *@
+                    <td>@Html.DisplayFor(modelItem => item.Result)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>لا توجد فحوصات مخبرية مسجلة لهذا المريض.</p>
+}
+
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">تعديل</a> |
+    <a asp-action="Index" class="btn btn-secondary">العودة إلى القائمة</a>
+</div>

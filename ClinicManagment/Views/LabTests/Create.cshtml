@@ -1,0 +1,50 @@
+@model LabTest
+
+<div class="container-fluid py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
+                    <h3 class="mb-4">إضافة تحليل جديد</h3>
+                    
+                    <form asp-action="Create">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="PatientId" class="form-label">المريض</label>
+                                <select asp-for="PatientId" asp-items="ViewBag.Patients" class="form-select">
+                                    <option value="">-- اختر المريض --</option>
+                                </select>
+                                <span asp-validation-for="PatientId" class="text-danger"></span>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="TestName" class="form-label">اسم التحليل</label>
+                                <input asp-for="TestName" class="form-control" />
+                                <span asp-validation-for="TestName" class="text-danger"></span>
+                            </div>
+                            
+                            <div class="col-md-12 mb-3">
+                                <label asp-for="Result" class="form-label">النتيجة</label>
+                                <textarea asp-for="Result" class="form-control" rows="3"></textarea>
+                                <span asp-validation-for="Result" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save me-2"></i>حفظ
+                            </button>
+                            <a asp-action="Index" class="btn btn-outline-secondary">
+                                <i class="fas fa-times me-2"></i>إلغاء
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
